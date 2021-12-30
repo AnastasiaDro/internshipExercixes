@@ -88,6 +88,10 @@ fun unpackString2(src : String) : String
 
 
 fun main() {
+
+    // я решила обрезать числа в изначальной строке, чтобы при распаковке
+
+
     val s1 = "AAAABCCC"
     val s2 = ""
     val s3 = "ABC11"
@@ -111,6 +115,5 @@ fun main() {
     """.trimIndent())
     println(res3)
     println(res4)
-
 }
 
