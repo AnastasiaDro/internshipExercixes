@@ -18,21 +18,23 @@ fun packString(src : String = "") : String {
     if (src.isEmpty()) return ""
 
     var count = 1
-    var j = 0
-    while (src[j].isDigit())
-        j++
+    var j = 1
     var cPrev = src[j]
     val sb   = StringBuilder(src.length)
-    for (i in ++j until src.length) {
-        if (src[i].isDigit()) ///я хотела, чтобы
-            continue
-        cPrev = src[i - 1]
-        if (src[i] == cPrev) count++
+    while (j < src.length) {
+        while (src[j].isDigit()) ///я хотела, чтобы
+            j++
+        if (src[j - 1].isDigit()) j++
+        if (j >= src.length)
+            break
+        cPrev = src[j - 1]
+        if (src[j] == cPrev) count++
         else {
             appendLetter(count, sb, cPrev)
             count = 1
-            cPrev = src[i]
+            cPrev = src[j]
         }
+        j++
     }
     if (count > 1)
         sb.append(count)
@@ -89,7 +91,7 @@ fun main() {
 
     // я решила обрезать числа в изначальной строке, чтобы при распаковке
 
-
+    val s0 = "))81))AA"
     val s1 = "AAAABCCC"
     val s2 = ""
     val s3 = "ZYXXXXXX___"
@@ -101,6 +103,8 @@ fun main() {
         s4 ${s4}
     """.trimIndent())
 
+    val res0 = packString(s0)
+    println("s0 = ${res0}")
     val res1 = packString(s1)
     val res2 = packString(s2)
     val res3 = packString(s3)
