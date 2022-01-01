@@ -10,7 +10,7 @@ fun appendLetter(count : Int, sb : StringBuilder, cPrev : Char) {
 }
 
 fun appendLetterPool(sb : StringBuilder, num : Int, c : Char) {
-    for (j in 1..num)
+    for (j in 1..num - 1)
         sb.append(c)
 }
 
@@ -40,8 +40,6 @@ fun packString(src : String = "") : String {
     return (sb.toString())
 }
 
-//for digits from 0 to 9 but can unpack strings with 21 cases
-// where 2 is a number of repetitions of the next digit-symbol
 fun unPackString1(src: String) : String
 {
     if (src.isEmpty()) return ""
@@ -53,7 +51,7 @@ fun unPackString1(src: String) : String
     for (i in 0 until src.length - inc) {
         if (src[i].isDigit() && src.length > i + 1)
         {
-            num = getNumericValue(src[i]) - 2
+            num = getNumericValue(src[i])
             appendLetterPool(sb, num, src[i + 1])
             inc += num
         } else {
@@ -64,27 +62,27 @@ fun unPackString1(src: String) : String
 }
 
 // for cases with 10 and more repetitons
-fun unpackString2(src : String) : String
-{
-    var num : Int
-    val res = StringBuilder()
-    val numberStr = StringBuilder("")
-    var j = 0
-    var start : Int
-    while (j < src.length)
-    {
-        start = j
-        while (j < src.length && src[j].isDigit())
-            numberStr.append(src[j++])
-        if (j < src.length) {
-            num = if (j != start) numberStr.toString().toInt() else 1
-            numberStr.clear()
-            appendLetterPool(res, num, src[j])
-        }
-        j++
-    }
-    return(res.toString())
-}
+//fun unpackString2(src : String) : String
+//{
+//    var num : Int
+//    val res = StringBuilder()
+//    val numberStr = StringBuilder("")
+//    var j = 0
+//    var start : Int
+//    while (j < src.length)
+//    {
+//        start = j
+//        while (j < src.length && src[j].isDigit())
+//            numberStr.append(src[j++])
+//        if (j < src.length) {
+//            num = if (j != start) numberStr.toString().toInt() else 1
+//            numberStr.clear()
+//            appendLetterPool(res, num, src[j])
+//        }
+//        j++
+//    }
+//    return(res.toString())
+//}
 
 
 fun main() {
@@ -94,7 +92,7 @@ fun main() {
 
     val s1 = "AAAABCCC"
     val s2 = ""
-    val s3 = "ABC11"
+    val s3 = "ZYXXXXXX___"
     val s4 = "8ABC"
     println("""Strings:
         s1 ${s1}
@@ -113,7 +111,11 @@ fun main() {
         s3 -> ${res3}
         s4 -> ${res4}
     """.trimIndent())
-    println(res3)
-    println(res4)
+    println("""After unpacking
+        s1 -> ${unPackString1(res1)}
+        s2 -> ${unPackString1(res2)}
+        s3 -> ${unPackString1(res3)}
+        s4 -> ${unPackString1(res4)}
+    """.trimIndent())
 }
 
