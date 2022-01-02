@@ -18,13 +18,15 @@ fun packString(src : String = "") : String {
     if (src.isEmpty()) return ""
 
     var count = 1
-    var j = 1
+    var j = 0
+    while (src[j].isDigit()) ///я хотела, чтобы
+        j++
+    j++
     var cPrev = src[j-1]
     val sb   = StringBuilder(src.length)
     while (j < src.length) {
-        while (src[j].isDigit()) ///я хотела, чтобы
+        while (j < src.length && src[j].isDigit()) ///я хотела, чтобы
             j++
-        //if (src[j - 1].isDigit()) j++ //else cPrev = src[j - 1]
         if (j >= src.length)
             break
         if (src[j] == cPrev) count++
@@ -95,33 +97,41 @@ fun main() {
     val s2 = ""
     val s3 = "ZYXXXXXX___"
     val s4 = "8ABC"
+    val s5 = "VVVG8"
+
+    println(packString(s5))
+
     println("""Strings:
+        s0 ${s0}
         s1 ${s1}
         s2 ${s2} //empty string
         s3 ${s3}
         s4 ${s4}
+        s5 ${s5}
     """.trimIndent())
 
 
-
-//    val res1 = packString(s1)
-//    val res2 = packString(s2)
-   // val res3 = packString(s3)
-    val res3 = packString(s3)
     val res0 = packString(s0)
-  //  println("""After packing
-//        s1 -> ${res1}
-//        s2 -> ${res2}
-//        s3 -> ${res3}
-//        s4 -> ${res4}
-//    """.trimIndent())
-    println("s4 = ${res3}")
-    println("s0 = ${res0}")
-  //  println("""After unpacking
-//        s1 -> ${unPackString1(res1)}
-//        s2 -> ${unPackString1(res2)}
-//        s3 -> ${unPackString1(res3)}
-//        s4 -> ${unPackString1(res4)}
-//    """.trimIndent())
+    val res1 = packString(s1)
+    val res2 = packString(s2)
+    val res3 = packString(s3)
+    val res4 = packString(s4)
+    val res5 = packString(s5)
+    println("""After packing
+        s0 -> ${res0}
+        s1 -> ${res1}
+        s2 -> ${res2}
+        s3 -> ${res3}
+        s4 -> ${res4}
+        s5 -> ${res5}
+    """.trimIndent())
+    println("""After unpacking
+        s0 -> ${unPackString1(res0)}
+        s1 -> ${unPackString1(res1)}
+        s2 -> ${unPackString1(res2)}
+        s3 -> ${unPackString1(res3)}
+        s4 -> ${unPackString1(res4)}
+        s5 -> ${unPackString1(res5)}
+    """.trimIndent())
 }
 
