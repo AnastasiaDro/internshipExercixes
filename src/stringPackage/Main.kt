@@ -22,7 +22,6 @@ fun moveIndexThroughDigits(src : String, j : Int) : Int
     return i
 }
 
-
 fun packString(src : String = "") : String {
     if (src.isEmpty()) return ""
 
@@ -52,7 +51,7 @@ fun packString(src : String = "") : String {
     return (sb.toString())
 }
 
-fun unPackString1(src: String) : String
+fun unPackString(src: String) : String
 {
     if (src.isEmpty()) return ""
 
@@ -115,13 +114,13 @@ fun main() {
         s6 -> ${res6}
     """.trimIndent())
     println("""After unpacking
-        s0 -> ${unPackString1(res0)}
-        s1 -> ${unPackString1(res1)}
-        s2 -> ${unPackString1(res2)}
-        s3 -> ${unPackString1(res3)}
-        s4 -> ${unPackString1(res4)}
-        s5 -> ${unPackString1(res5)}
-        s6 -> ${unPackString1(res6)}
+        s0 -> ${unPackString(res0)}
+        s1 -> ${unPackString(res1)}
+        s2 -> ${unPackString(res2)}
+        s3 -> ${unPackString(res3)}
+        s4 -> ${unPackString(res4)}
+        s5 -> ${unPackString(res5)}
+        s6 -> ${unPackString(res6)}
     """.trimIndent())
 }
 
