@@ -19,15 +19,14 @@ fun packString(src : String = "") : String {
 
     var count = 1
     var j = 1
-    var cPrev = src[j]
+    var cPrev = src[j-1]
     val sb   = StringBuilder(src.length)
     while (j < src.length) {
         while (src[j].isDigit()) ///я хотела, чтобы
             j++
-        if (src[j - 1].isDigit()) j++
+        //if (src[j - 1].isDigit()) j++ //else cPrev = src[j - 1]
         if (j >= src.length)
             break
-        cPrev = src[j - 1]
         if (src[j] == cPrev) count++
         else {
             appendLetter(count, sb, cPrev)
@@ -103,23 +102,26 @@ fun main() {
         s4 ${s4}
     """.trimIndent())
 
-    val res0 = packString(s0)
-    println("s0 = ${res0}")
-    val res1 = packString(s1)
-    val res2 = packString(s2)
+
+
+//    val res1 = packString(s1)
+//    val res2 = packString(s2)
+   // val res3 = packString(s3)
     val res3 = packString(s3)
-    val res4 = packString(s4)
-    println("""After packing
-        s1 -> ${res1}
-        s2 -> ${res2}
-        s3 -> ${res3}
-        s4 -> ${res4}
-    """.trimIndent())
-    println("""After unpacking
-        s1 -> ${unPackString1(res1)}
-        s2 -> ${unPackString1(res2)}
-        s3 -> ${unPackString1(res3)}
-        s4 -> ${unPackString1(res4)}
-    """.trimIndent())
+    val res0 = packString(s0)
+  //  println("""After packing
+//        s1 -> ${res1}
+//        s2 -> ${res2}
+//        s3 -> ${res3}
+//        s4 -> ${res4}
+//    """.trimIndent())
+    println("s4 = ${res3}")
+    println("s0 = ${res0}")
+  //  println("""After unpacking
+//        s1 -> ${unPackString1(res1)}
+//        s2 -> ${unPackString1(res2)}
+//        s3 -> ${unPackString1(res3)}
+//        s4 -> ${unPackString1(res4)}
+//    """.trimIndent())
 }
 
