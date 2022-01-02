@@ -19,8 +19,9 @@ fun packString(src : String = "") : String {
 
     var count = 1
     var j = 0
-    while (src[j].isDigit()) ///я хотела, чтобы
+    while (j < src.length && src[j].isDigit()) ///я хотела, чтобы
         j++
+    if (j >= src.length) return ""
     j++
     var cPrev = src[j-1]
     val sb   = StringBuilder(src.length)
@@ -64,30 +65,6 @@ fun unPackString1(src: String) : String
     return (sb.toString())
 }
 
-// for cases with 10 and more repetitons
-//fun unpackString2(src : String) : String
-//{
-//    var num : Int
-//    val res = StringBuilder()
-//    val numberStr = StringBuilder("")
-//    var j = 0
-//    var start : Int
-//    while (j < src.length)
-//    {
-//        start = j
-//        while (j < src.length && src[j].isDigit())
-//            numberStr.append(src[j++])
-//        if (j < src.length) {
-//            num = if (j != start) numberStr.toString().toInt() else 1
-//            numberStr.clear()
-//            appendLetterPool(res, num, src[j])
-//        }
-//        j++
-//    }
-//    return(res.toString())
-//}
-
-
 fun main() {
 
     // я решила обрезать числа в изначальной строке, чтобы при распаковке
@@ -98,8 +75,9 @@ fun main() {
     val s3 = "ZYXXXXXX___"
     val s4 = "8ABC"
     val s5 = "VVVG8"
+    val s6 = "986"
 
-    println(packString(s5))
+    println(packString(s6))
 
     println("""Strings:
         s0 ${s0}
@@ -108,6 +86,7 @@ fun main() {
         s3 ${s3}
         s4 ${s4}
         s5 ${s5}
+        s6 ${s6}
     """.trimIndent())
 
 
@@ -117,6 +96,7 @@ fun main() {
     val res3 = packString(s3)
     val res4 = packString(s4)
     val res5 = packString(s5)
+    val res6 = packString(s6)
     println("""After packing
         s0 -> ${res0}
         s1 -> ${res1}
@@ -124,6 +104,7 @@ fun main() {
         s3 -> ${res3}
         s4 -> ${res4}
         s5 -> ${res5}
+        s6 -> ${res6}
     """.trimIndent())
     println("""After unpacking
         s0 -> ${unPackString1(res0)}
@@ -132,6 +113,7 @@ fun main() {
         s3 -> ${unPackString1(res3)}
         s4 -> ${unPackString1(res4)}
         s5 -> ${unPackString1(res5)}
+        s6 -> ${unPackString1(res6)}
     """.trimIndent())
 }
 
