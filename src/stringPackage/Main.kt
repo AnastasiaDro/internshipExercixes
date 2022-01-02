@@ -14,20 +14,28 @@ fun appendLetterPool(sb : StringBuilder, num : Int, c : Char) {
         sb.append(c)
 }
 
+fun moveIndexThroughDigits(src : String, j : Int) : Int
+{
+    var i = j
+    while (i < src.length && src[i].isDigit())
+        i++
+    return i
+}
+
+
 fun packString(src : String = "") : String {
     if (src.isEmpty()) return ""
 
     var count = 1
     var j = 0
-    while (j < src.length && src[j].isDigit()) ///я хотела, чтобы
-        j++
-    if (j >= src.length) return ""
+    j = moveIndexThroughDigits(src, j)
+    if (j >= src.length)
+        return ""
     j++
     var cPrev = src[j-1]
     val sb   = StringBuilder(src.length)
     while (j < src.length) {
-        while (j < src.length && src[j].isDigit()) ///я хотела, чтобы
-            j++
+        j = moveIndexThroughDigits(src, j)
         if (j >= src.length)
             break
         if (src[j] == cPrev) count++
