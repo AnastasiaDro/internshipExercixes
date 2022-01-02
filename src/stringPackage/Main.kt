@@ -74,8 +74,9 @@ fun unPackString(src: String) : String
 
 fun main() {
 
-    // я решила обрезать числа в изначальной строке, чтобы при распаковке
-
+    // я решила отбрасывать и не упаковывать числа из изначальной строки, чтобы при распаковке
+    // не менялись данные, то есть
+    // не получилось ситуации 8ABC -> packing-unpacking -> AAAAAAAABC
     val s0 = "))81))AA"
     val s1 = "AAAABCCC"
     val s2 = ""
@@ -87,13 +88,13 @@ fun main() {
     println(packString(s6))
 
     println("""Strings:
-        s0 ${s0}
-        s1 ${s1}
-        s2 ${s2} //empty string
-        s3 ${s3}
-        s4 ${s4}
-        s5 ${s5}
-        s6 ${s6}
+        s0 -> ${s0}
+        s1 -> ${s1}
+        s2 -> ${s2} //empty string
+        s3 -> ${s3}
+        s4 -> ${s4}
+        s5 -> ${s5}
+        s6 -> ${s6}
     """.trimIndent())
 
 
