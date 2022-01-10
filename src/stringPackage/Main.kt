@@ -1,24 +1,22 @@
 package stringPackage
 
 import java.lang.Character.getNumericValue
-import java.util.*
 
 //Присоединить букву
-private fun appendLetter(count : Int, sb : StringBuilder, cPrev : Char) {
+private fun appendLetter(count: Int, sb: StringBuilder, cPrev: Char) {
     if (count > 1)
         sb.append(count)
     sb.append(cPrev)
 }
 
 //Присоединить последовательность букв
-private fun appendLetterPool(sb : StringBuilder, num : Int, c : Char) {
-    for (index in 1..num - 1)
+private fun appendLetterPool(sb: StringBuilder, num: Int, c: Char) {
+    for (index in 1 until num)
         sb.append(c)
 }
 
 //Пропустить числа
-private fun moveIndexThroughDigits(src : String, index : Int) : Int
-{
+private fun moveIndexThroughDigits(src: String, index: Int): Int {
     var shiftedIndex = index
     while (shiftedIndex < src.length && src[shiftedIndex].isDigit())
         shiftedIndex++
@@ -26,7 +24,7 @@ private fun moveIndexThroughDigits(src : String, index : Int) : Int
 }
 
 //Функция упаковки
-fun packString(src : String = "") : String {
+fun packString(src: String = ""): String {
     if (src.isEmpty()) return ""
 
     var count = 1
@@ -35,8 +33,8 @@ fun packString(src : String = "") : String {
     if (index >= src.length)
         return ""
     index++
-    var cPrev = src[index-1]
-    val sb   = StringBuilder(src.length)
+    var cPrev = src[index - 1]
+    val sb = StringBuilder(src.length)
     while (index < src.length) {
         index = moveIndexThroughDigits(src, index)
         if (index >= src.length)
@@ -56,17 +54,15 @@ fun packString(src : String = "") : String {
 }
 
 //Функция распаковки
-fun unPackString(src: String) : String
-{
+fun unPackString(src: String): String {
     if (src.isEmpty()) return ""
 
-    var num : Int
+    var num: Int
     var inc = 0
     val sb = StringBuilder()
 
     for (index in 0 until src.length - inc) {
-        if (src[index].isDigit() && src.length > index + 1)
-        {
+        if (src[index].isDigit() && src.length > index + 1) {
             num = getNumericValue(src[index])
             appendLetterPool(sb, num, src[index + 1])
             inc += num
@@ -93,13 +89,13 @@ fun main() {
     for (i in cases) print("${i}, ")
     println()
 //Упаковка
-    val packedArr = Array(7, { i -> packString(cases[i])})
+    val packedArr = Array(7, { i -> packString(cases[i]) })
 //Печать упакованных строк
     print("After packing    : ")
     for (i in packedArr) print("${i},    ")
     println()
 //Распаковка
-    val unPackedArr = Array(7, { i -> unPackString(packedArr[i])})
+    val unPackedArr = Array(7, { i -> unPackString(packedArr[i]) })
 //Печать распакованных строк
     print("After unPacking  : ")
     for (i in unPackedArr) print("${i},  ")
