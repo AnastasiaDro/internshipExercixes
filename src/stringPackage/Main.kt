@@ -96,13 +96,12 @@ fun main() {
     val packedArr = Array(7, { i -> packString(cases[i])})
 //Печать упакованных строк
     print("After packing    : ")
-    for (i in packedArr) print("${i}, ")
+    for (i in packedArr) print("${i},    ")
     println()
 //Распаковка
     val unPackedArr = Array(7, { i -> unPackString(packedArr[i])})
 //Печать распакованных строк
     print("After unPacking  : ")
-    for (i in unPackedArr) print("${i}, ")
+    for (i in unPackedArr) print("${i},  ")
     println()
 }
-
