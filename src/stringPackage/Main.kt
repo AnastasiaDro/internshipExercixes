@@ -1,6 +1,7 @@
 package stringPackage
 
 import java.lang.Character.getNumericValue
+import java.util.*
 
 //Присоединить букву
 private fun appendLetter(count : Int, sb : StringBuilder, cPrev : Char) {
@@ -85,55 +86,23 @@ fun main() {
        в связи с этим пришлось обработать кейсы, когда числа в начале, середине или конце строки
     */
 
-    //Тестовые кейсы
-    val s0 = "))81))AA"
-    val s1 = "AAAABCCC"
-    val s2 = ""
-    val s3 = "ZYXXXXXX___"
-    val s4 = "8ABC"
-    val s5 = "VVVG8"
-    val s6 = "986"
-
-    //Распечатка тестовых кейсов
-    println("""Strings:
-        s0 -> ${s0}
-        s1 -> ${s1}
-        s2 -> ${s2} //empty string
-        s3 -> ${s3}
-        s4 -> ${s4}
-        s5 -> ${s5}
-        s6 -> ${s6}
-    """.trimIndent())
-
-    //Упаковка
-    val res0 = packString(s0)
-    val res1 = packString(s1)
-    val res2 = packString(s2)
-    val res3 = packString(s3)
-    val res4 = packString(s4)
-    val res5 = packString(s5)
-    val res6 = packString(s6)
-
-    //Распечатка упакованных строк
-    println("""After packing
-        s0 -> ${res0}
-        s1 -> ${res1}
-        s2 -> ${res2}
-        s3 -> ${res3}
-        s4 -> ${res4}
-        s5 -> ${res5}
-        s6 -> ${res6}
-    """.trimIndent())
-
-    //Распаковка и печать
-    println("""After unpacking
-        s0 -> ${unPackString(res0)}
-        s1 -> ${unPackString(res1)}
-        s2 -> ${unPackString(res2)}
-        s3 -> ${unPackString(res3)}
-        s4 -> ${unPackString(res4)}
-        s5 -> ${unPackString(res5)}
-        s6 -> ${unPackString(res6)}
-    """.trimIndent())
+//Тестовые кейсы
+    val cases = arrayOf("))81))AA", "AAAABCCC", "", "ZYXXXXXX___", "8ABC", "VVVG8", "986")
+//Печать тестовых кейсов
+    print("strings          : ")
+    for (i in cases) print("${i}, ")
+    println()
+//Упаковка
+    val packedArr = Array(7, { i -> packString(cases[i])})
+//Печать упакованных строк
+    print("After packing    : ")
+    for (i in packedArr) print("${i}, ")
+    println()
+//Распаковка
+    val unPackedArr = Array(7, { i -> unPackString(packedArr[i])})
+//Печать распакованных строк
+    print("After unPacking  : ")
+    for (i in unPackedArr) print("${i}, ")
+    println()
 }
 
