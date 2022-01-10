@@ -1,6 +1,17 @@
+//Created by Anastasia Drogunova
+//Date: 10.01.2022 Time: 13:06
+
 package stringPackage
 
 import java.lang.Character.getNumericValue
+
+//Класс для упаковки-распаковки строк
+/* Упаковка строки:
+     Считается число идущих подряд одинаковых символов и создаётся строка,
+     где пишется это число и повторяющийся символ
+    --Пример: "AABCCC -> packing -> 2AB3C"
+     При этом числа в первоначальной строке при упаковке отбрасываются:
+    --Пример: "8Y__c5c -> packing -> Y__2c"*/
 
 class PackUnpackManager : IPackUnpack {
 
