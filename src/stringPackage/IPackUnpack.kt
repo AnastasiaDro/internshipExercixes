@@ -4,7 +4,7 @@
 package stringPackage
 
 /** Содержит функции для упаковки-распаковки строк
-    Наследуемые PackUnpackManager-
+    Наследуемые PackUnpackManager-ом
     */
 
 interface IPackUnpack {

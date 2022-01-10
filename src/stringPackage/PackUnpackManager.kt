@@ -5,19 +5,20 @@ package stringPackage
 
 import java.lang.Character.getNumericValue
 
-//Класс для упаковки-распаковки строк
-/** Упаковка строки:
-     Считается число идущих подряд одинаковых символов и создаётся строка,
-     где пишется это число и повторяющийся символ
-    --Пример: "AABCCC -> packing -> 2AB3C"
-     При этом числа в первоначальной строке при упаковке отбрасываются:
-    --Пример: "8Y__c5c -> packing -> Y__2c"
-    */
+/**Класс для упаковки-распаковки строк*/
 
 class PackUnpackManager : IPackUnpack {
 
+    /** Упаковка строки:
+    Считается число идущих подряд одинаковых символов и создаётся строка,
+    где пишется это число и повторяющийся символ
+    --Пример: "AABCCC -> packing -> 2AB3C"
+    При этом числа в первоначальной строке при упаковке отбрасываются:
+    --Пример: "8Y__c5c -> packing -> Y__2c"
+    */
+
     override fun packString(src: String): String {
-        if (src.isEmpty()) return ""
+    //    if (src.isEmpty()) return ""
 
         var count = 1
         var index = 0
@@ -45,6 +46,12 @@ class PackUnpackManager : IPackUnpack {
         return (sb.toString())
     }
 
+    /** Распаковка строки:
+    Из упакованной описанным выше методом строки извлекается
+    первоначальная строка: числа воспринимаются как количество символов, идущих за числом
+    символы без числа перед ними печатаются в единственном экземпляре
+    --Пример: "2i4ug" -> unpacking -> "iiuuuug"
+     */
     override fun unPackString(src: String): String {
         if (src.isEmpty()) return ""
 
@@ -64,13 +71,13 @@ class PackUnpackManager : IPackUnpack {
         return (sb.toString())
     }
 
-    //Присоединить последовательность букв
+    //Присоединить последовательность букв к строке-результатов
     private fun appendLetterPool(sb: StringBuilder, num: Int, c: Char) {
         for (index in 1 until num)
             sb.append(c)
     }
 
-    //Пропустить числа
+    //Пропустить числа в строке
     private fun moveIndexThroughDigits(src: String, index: Int): Int {
         var shiftedIndex = index
         while (shiftedIndex < src.length && src[shiftedIndex].isDigit())
@@ -78,10 +85,11 @@ class PackUnpackManager : IPackUnpack {
         return shiftedIndex
     }
 
-    //Присоединить букву
+    //Присоединить букву к строке-результату
     private fun appendLetter(count: Int, sb: StringBuilder, cPrev: Char) {
         if (count > 1)
             sb.append(count)
         sb.append(cPrev)
     }
+
 }
