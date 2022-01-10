@@ -3,6 +3,7 @@ package stringPackage
 import java.lang.Character.getNumericValue
 
 class PackUnpackManager : IPackUnpack {
+
     override fun packString(src: String): String {
         if (src.isEmpty()) return ""
 
@@ -35,20 +36,20 @@ class PackUnpackManager : IPackUnpack {
     override fun unPackString(src: String): String {
         if (src.isEmpty()) return ""
 
-    var num: Int
-    var inc = 0
-    val sb = StringBuilder()
+        var num: Int
+        var inc = 0
+        val sb = StringBuilder()
 
-    for (index in 0 until src.length - inc) {
-        if (src[index].isDigit() && src.length > index + 1) {
-            num = getNumericValue(src[index])
-            appendLetterPool(sb, num, src[index + 1])
-            inc += num
-        } else {
-            sb.append(src[index])
+        for (index in 0 until src.length - inc) {
+            if (src[index].isDigit() && src.length > index + 1) {
+                num = getNumericValue(src[index])
+                appendLetterPool(sb, num, src[index + 1])
+                inc += num
+            } else {
+                sb.append(src[index])
+            }
         }
-    }
-    return (sb.toString())
+        return (sb.toString())
     }
 
     //Присоединить последовательность букв
