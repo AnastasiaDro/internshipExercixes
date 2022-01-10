@@ -3,25 +3,25 @@ package stringPackage
 import java.lang.Character.getNumericValue
 
 //Присоединить букву
-fun appendLetter(count : Int, sb : StringBuilder, cPrev : Char) {
+private fun appendLetter(count : Int, sb : StringBuilder, cPrev : Char) {
     if (count > 1)
         sb.append(count)
     sb.append(cPrev)
 }
 
 //Присоединить последовательность букв
-fun appendLetterPool(sb : StringBuilder, num : Int, c : Char) {
-    for (j in 1..num - 1)
+private fun appendLetterPool(sb : StringBuilder, num : Int, c : Char) {
+    for (index in 1..num - 1)
         sb.append(c)
 }
 
 //Пропустить числа
-fun moveIndexThroughDigits(src : String, j : Int) : Int
+private fun moveIndexThroughDigits(src : String, index : Int) : Int
 {
-    var i = j
-    while (i < src.length && src[i].isDigit())
-        i++
-    return i
+    var shiftedIndex = index
+    while (shiftedIndex < src.length && src[shiftedIndex].isDigit())
+        shiftedIndex++
+    return shiftedIndex
 }
 
 //Функция упаковки
@@ -29,24 +29,24 @@ fun packString(src : String = "") : String {
     if (src.isEmpty()) return ""
 
     var count = 1
-    var j = 0
-    j = moveIndexThroughDigits(src, j)
-    if (j >= src.length)
+    var index = 0
+    index = moveIndexThroughDigits(src, index)
+    if (index >= src.length)
         return ""
-    j++
-    var cPrev = src[j-1]
+    index++
+    var cPrev = src[index-1]
     val sb   = StringBuilder(src.length)
-    while (j < src.length) {
-        j = moveIndexThroughDigits(src, j)
-        if (j >= src.length)
+    while (index < src.length) {
+        index = moveIndexThroughDigits(src, index)
+        if (index >= src.length)
             break
-        if (src[j] == cPrev) count++
+        if (src[index] == cPrev) count++
         else {
             appendLetter(count, sb, cPrev)
             count = 1
-            cPrev = src[j]
+            cPrev = src[index]
         }
-        j++
+        index++
     }
     if (count > 1)
         sb.append(count)
@@ -63,14 +63,14 @@ fun unPackString(src: String) : String
     var inc = 0
     val sb = StringBuilder()
 
-    for (i in 0 until src.length - inc) {
-        if (src[i].isDigit() && src.length > i + 1)
+    for (index in 0 until src.length - inc) {
+        if (src[index].isDigit() && src.length > index + 1)
         {
-            num = getNumericValue(src[i])
-            appendLetterPool(sb, num, src[i + 1])
+            num = getNumericValue(src[index])
+            appendLetterPool(sb, num, src[index + 1])
             inc += num
         } else {
-            sb.append(src[i])
+            sb.append(src[index])
         }
     }
     return (sb.toString())
