@@ -2,18 +2,20 @@ package stringPackage
 
 import java.lang.Character.getNumericValue
 
-//JVM JIT compiler will inline small methods on its own
+//Присоединить букву
 fun appendLetter(count : Int, sb : StringBuilder, cPrev : Char) {
     if (count > 1)
         sb.append(count)
     sb.append(cPrev)
 }
 
+//Присоединить последовательность букв
 fun appendLetterPool(sb : StringBuilder, num : Int, c : Char) {
     for (j in 1..num - 1)
         sb.append(c)
 }
 
+//Пропустить числа
 fun moveIndexThroughDigits(src : String, j : Int) : Int
 {
     var i = j
@@ -22,6 +24,7 @@ fun moveIndexThroughDigits(src : String, j : Int) : Int
     return i
 }
 
+//Функция упаковки
 fun packString(src : String = "") : String {
     if (src.isEmpty()) return ""
 
@@ -51,6 +54,7 @@ fun packString(src : String = "") : String {
     return (sb.toString())
 }
 
+//Функция распаковки
 fun unPackString(src: String) : String
 {
     if (src.isEmpty()) return ""
@@ -79,7 +83,9 @@ fun main() {
        не получилось ситуации 8ABC -> packing-unpacking -> AAAAAAAABC
 
        в связи с этим пришлось обработать кейсы, когда числа в начале, середине или конце строки
-        */
+    */
+
+    //Тестовые кейсы
     val s0 = "))81))AA"
     val s1 = "AAAABCCC"
     val s2 = ""
@@ -88,8 +94,7 @@ fun main() {
     val s5 = "VVVG8"
     val s6 = "986"
 
-    println(packString(s6))
-
+    //Распечатка тестовых кейсов
     println("""Strings:
         s0 -> ${s0}
         s1 -> ${s1}
@@ -100,7 +105,7 @@ fun main() {
         s6 -> ${s6}
     """.trimIndent())
 
-
+    //Упаковка
     val res0 = packString(s0)
     val res1 = packString(s1)
     val res2 = packString(s2)
@@ -108,6 +113,8 @@ fun main() {
     val res4 = packString(s4)
     val res5 = packString(s5)
     val res6 = packString(s6)
+
+    //Распечатка упакованных строк
     println("""After packing
         s0 -> ${res0}
         s1 -> ${res1}
@@ -117,6 +124,8 @@ fun main() {
         s5 -> ${res5}
         s6 -> ${res6}
     """.trimIndent())
+
+    //Распаковка и печать
     println("""After unpacking
         s0 -> ${unPackString(res0)}
         s1 -> ${unPackString(res1)}
