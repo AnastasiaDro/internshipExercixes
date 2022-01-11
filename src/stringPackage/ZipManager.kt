@@ -2,12 +2,11 @@
 //Date: 10.01.2022 Time: 13:06
 
 package stringPackage
-
 import java.lang.Character.getNumericValue
 
 /**Класс для упаковки-распаковки строк*/
 
-class PackUnpackManager : IPackUnpack {
+class ZipManager : IPackUnpack {
 
     /** Упаковка строки:
     Считается число идущих подряд одинаковых символов и создаётся строка,
