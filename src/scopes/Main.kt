@@ -19,9 +19,10 @@ import kotlin.collections.HashMap
 fun checkScopes(scopeStr: String) : Boolean {
 
     val scopeMap : HashMap<Char, Char> = hashMapOf('(' to ')', '[' to ']', '{' to '}')
-    //разделить на 2 и выйти если
     val stack = Stack<Char>()
-    val isEven = scopeStr.length % 2 == 0
+    val isEven = scopeStr.length % 2 == 0   // если число скобок нечётно,
+                                            // то мы можем сразу сказать,
+                                            // что какая-то из скобок не закрывается
     if (isEven) {
         stack.push(scopeStr[0])
         for (index in scopeStr.indices - 0)
@@ -29,7 +30,7 @@ fun checkScopes(scopeStr: String) : Boolean {
             when {
                 scopeMap.containsKey(scopeStr[index]) -> stack.push(scopeStr[index])
                 scopeMap.containsValue(scopeStr[index]) && scopeMap.get(stack.peek()) == scopeStr[index] -> stack.pop()
-                else -> throw RuntimeException("Ошибка последовательности скобок!")
+                else -> throw IllegalArgumentException("Ошибка последовательности скобок!")
             }
         }
     }
@@ -45,5 +46,9 @@ fun main() {
     println(checkScopes(scopeStr_valid1))
     println(checkScopes(scopeStr_valid2))
     println(checkScopes(scopeStr_invalid))
-    println(checkScopes(scopeStr_exeption1))
+    try {
+        println(checkScopes(scopeStr_exeption1))
+    } catch (e: IllegalArgumentException) {
+        println("Искплючение бросила строка: scopeStr_exeption1 = \"((}{})\"")
+    }
 }
