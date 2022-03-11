@@ -11,18 +11,16 @@ class MyLinkedList {
 
     private var startElem : Elem? = null
 
+
+
     fun get(index: Int): Int {
+        var i = 0
         var pointer: Elem? = startElem
-       if (pointer != null) {
-           for (i in 0..index) {
-               if (pointer!!.next != null) {
-                   pointer = pointer.next
-               } else {
-                   break
-               }
-           }
-       }
-        if (pointer != null) return (pointer.value) else return (-1)
+        while (i < index) {
+            pointer = pointer?.next
+            i++
+        }
+        if (pointer != null) return pointer.value else return -1
     }
 
     fun addAtHead(mValue: Int) {
@@ -56,5 +54,6 @@ class MyLinkedList {
     fun deleteAtIndex(index: Int) {
 
     }
+
 
 }
