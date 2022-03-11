@@ -4,14 +4,13 @@
 package linkedlist.first
 
 class MyLinkedList {
+
     private class Elem(mValue: Int) {
         var value = mValue
-        var next : Elem? = null
+        var next: Elem? = null
     }
 
-    private var startElem : Elem? = null
-
-
+    private var startElem: Elem? = null
 
     fun get(index: Int): Int {
         val pointer: Elem? = findElem(index)
@@ -30,19 +29,18 @@ class MyLinkedList {
 
     fun addAtTail(mValue: Int) {
         var pointer: Elem
-        if (startElem == null)
-            startElem = Elem(mValue)
-        else {
+        if (startElem != null) {
             pointer = startElem!!
             while (pointer.next != null) {
                 pointer = pointer.next!!
             }
             pointer.next = Elem(mValue)
+        } else {
+            startElem = Elem(mValue)
         }
     }
 
-    private fun findElem(index: Int) : Elem?
-    {
+    private fun findElem(index: Int): Elem? {
         var i = 0
         var pointer: Elem? = null
         if (index >= 0) {
@@ -58,7 +56,7 @@ class MyLinkedList {
     fun addAtIndex(index: Int, mValue: Int) {
         val prev = findElem(index - 1)
         if (prev != null) {
-            var next : Elem? = null
+            var next: Elem? = null
             next = prev.next
             prev.next = Elem(mValue)
             prev.next?.next = next
@@ -69,8 +67,11 @@ class MyLinkedList {
     }
 
     fun deleteAtIndex(index: Int) {
-
+        if (index == 0)
+            startElem = startElem?.next
+        else {
+            val prev = findElem(index - 1)
+            prev?.next = prev?.next?.next
+        }
     }
-
-
-    }
+}
