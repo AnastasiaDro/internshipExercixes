@@ -14,12 +14,7 @@ class MyLinkedList {
 
 
     fun get(index: Int): Int {
-        var i = 0
-        var pointer: Elem? = startElem
-        while (i < index) {
-            pointer = pointer?.next
-            i++
-        }
+        val pointer: Elem? = findElem(index)
         if (pointer != null) return pointer.value else return -1
     }
 
@@ -28,8 +23,7 @@ class MyLinkedList {
         if (startElem == null)
             startElem = newElem
         else {
-            newElem.next = Elem(startElem!!.value)
-            newElem.next = startElem!!.next
+            newElem.next = startElem
             startElem = newElem
         }
     }
@@ -47,7 +41,30 @@ class MyLinkedList {
         }
     }
 
+    private fun findElem(index: Int) : Elem?
+    {
+        var i = 0
+        var pointer: Elem? = null
+        if (index >= 0) {
+            pointer = startElem
+            while (i < index) {
+                pointer = pointer?.next
+                i++
+            }
+        }
+        return pointer
+    }
+
     fun addAtIndex(index: Int, mValue: Int) {
+        val prev = findElem(index - 1)
+        if (prev != null) {
+            var next : Elem? = null
+            next = prev.next
+            prev.next = Elem(mValue)
+            prev.next?.next = next
+        } else {
+            addAtHead(mValue)
+        }
 
     }
 
@@ -56,4 +73,4 @@ class MyLinkedList {
     }
 
 
-}
+    }
