@@ -1,7 +1,7 @@
 //Created by MyLinkedList
 //Date: 10.03.2022 Time: 19:08
 
-package linkedlist.first
+package linkedlist.second
 
 class MyLinkedList {
 
